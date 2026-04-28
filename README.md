@@ -629,3 +629,7 @@ PHP_Laravel12_TeamWork/
 ---
 
 Your PHP_Laravel12_TeamWork Project is now ready!
+<<<<<<< HEAD
+=======
+
+>>>>>>> development
