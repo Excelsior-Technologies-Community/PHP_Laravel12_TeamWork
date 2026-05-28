@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamInviteController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,21 @@ Route::get('/invite/deny/{token}', [TeamInviteController::class, 'deny'])
 */
 
 Route::middleware(['auth'])->group(function () {
+
+    /*
+    |-----------------------------
+    | TASK & CHAT ROUTES
+    |-----------------------------
+    */
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+    Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    Route::post('/tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
+    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
+    Route::get('/chat', [MessageController::class, 'index'])->name('chat.index');
+    Route::post('/chat', [MessageController::class, 'store'])->name('chat.store');
+    Route::get('/users/search', [TeamController::class, 'searchUsers'])->name('users.search');
+
 
     /*
     |-----------------------------
